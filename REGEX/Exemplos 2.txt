@@ -1,0 +1,50 @@
+EXERCICIOS DO SLIDE 13 - AULA 2
+site: https://regex101.com/
+13/08/2025
+
+
+1 - Binário Pares
+
+    [01]*0
+        
+        0010
+        10
+        111001110
+
+
+2 - Palavras com 00 no final
+
+    [a-zA-Z1-9]+00
+
+        aaaaa12312300
+        testedepalavra00
+        100
+        teste100
+
+
+3 - String entre aspas
+
+    ("|')[a-zA-Z0-9\s]*("|')
+
+        "Abcdef1234'
+        "aaaaaa"
+        "teste meo"
+
+
+4 - Email .br ou .com.br
+
+    [a-zA-Z0-9_.]*@[a-zA-Z0-9.]*(.br|.com.br)
+
+        eduardo_aran@edu.uivali.br
+        dudu_aran@yahoo.com.br
+
+
+5 - Telefones em SC
+    \+?(55)?\s*(47)\s*[0-9]{5}\-?[0-9]{4}
+
+        5547996265490
+        +55 47 99626-5490
+        47996265490
+        47 99626-5490
+
+

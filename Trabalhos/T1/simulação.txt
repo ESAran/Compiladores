@@ -1,0 +1,66 @@
+123
+
+si
+
+aaa
+
+littera 'a'
+
+chorda "teste"
+
+flottans 23.5
+
+verumfalsum verum
+
+
+// ARITIMETICAS
+-
++
+*
+/
+%
+++
+--
+
+// RELACIONAIS
+=
++=
+-=
+*=
+/=
+>
+>=
+<
+<=
+!=
+==
+
+//Logicos
+&&
+||
+!
+
+// BIT ABbit
+>>
+<<
+&
+|
+~
+^
+
+//delimitadores
+.
+,
+;
+:
+(
+)
+[
+]
+{
+}
+
+//comentarios
+tes/*aaaa*@!OO#jaaa*/
+
+//teste
