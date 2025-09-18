@@ -1,0 +1,157 @@
+<Programa> ::= <ListaTopLevel> ;
+
+<ListaTopLevel> ::= <ListaTopLevel> <TopLevel>
+                  | <TopLevel> ;
+
+<TopLevel> ::= <Declaracao> DEL_SEMICOLON
+             | <Funcao>
+             | <Procedimento> ;
+
+<Declaracao> ::= <Tipo> <ListaDeclItens> ;
+<ListaDeclItens> ::= <DeclItem>
+                   | <ListaDeclItens> DEL_COMMA <DeclItem> ;
+<DeclItem> ::= <IdOuVetor>
+             | <IdOuVetor> REL_EQUAL <exp> ;
+<IdOuVetor> ::= ID
+              | ID DEL_LBRACKET DEL_RBRACKET
+              | ID DEL_LBRACKET <exp> DEL_RBRACKET ;
+
+<Tipo> ::= KEY_BOOL
+         | KEY_CHAR
+         | KEY_INT
+         | KEY_FLOAT
+         | KEY_DOUBLE
+         | KEY_STRING ;
+
+<Funcao> ::= <Tipo> ID DEL_LPAREN DEL_RPAREN <Bloco>
+           | <Tipo> ID DEL_LPAREN <ListaParams> DEL_RPAREN <Bloco> ;
+
+<Procedimento> ::= KEY_VOID ID DEL_LPAREN DEL_RPAREN <Bloco>
+                 | KEY_VOID ID DEL_LPAREN <ListaParams> DEL_RPAREN <Bloco> ;
+
+<ListaParams> ::= <Param>
+                | <ListaParams> DEL_COMMA <Param> ;
+
+<Param> ::= <Tipo> ID
+          | <Tipo> ID DEL_LBRACKET DEL_RBRACKET ;
+
+<Bloco> ::= DEL_LBRACE DEL_RBRACE
+          | DEL_LBRACE <ListaComandos> DEL_RBRACE ;
+
+<ListaComandos> ::= <Comando>
+                  | <ListaComandos> <Comando> ;
+
+<Comando> ::= <Bloco>
+            | <Declaracao> DEL_SEMICOLON
+            | <Atribuicao> DEL_SEMICOLON
+            | <ComandoIf>
+            | <ComandoWhile>
+            | <ComandoFor>
+            | <ComandoDoWhile>
+            | <exp> DEL_SEMICOLON
+            | <ComandoBreak>
+            | <ComandoContinue>
+            | <ComandoReturn> DEL_SEMICOLON
+            | COMMENT_SINGLINE
+            | COMMENT_MULTLINES ;
+
+<ComandoBreak> ::= KEY_BREAK DEL_SEMICOLON ;
+<ComandoContinue> ::= KEY_CONTINUE DEL_SEMICOLON ;
+<ComandoReturn> ::= KEY_RETURN <exp> ;
+
+<ComandoIf> ::= KEY_IF DEL_LPAREN <exp> DEL_RPAREN <Comando>
+              | KEY_IF DEL_LPAREN <exp> DEL_RPAREN <Comando> KEY_ELSE <Comando> ;
+
+<ComandoWhile> ::= KEY_WHILE DEL_LPAREN <exp> DEL_RPAREN <Comando> ;
+
+<ComandoDoWhile> ::= KEY_DO <Comando> KEY_WHILE DEL_LPAREN <exp> DEL_RPAREN DEL_SEMICOLON ;
+
+<ComandoFor> ::= KEY_FOR DEL_LPAREN <Atribuicao> DEL_SEMICOLON <exp> DEL_SEMICOLON <ForPos> DEL_RPAREN <Comando> ;
+
+<ForPos> ::= <Atribuicao>
+           | <Incremento>
+           | <Decremento>
+           | <ForPos> DEL_COMMA <Atribuicao>
+           | <ForPos> DEL_COMMA <Incremento>
+           | <ForPos> DEL_COMMA <Decremento> ;
+
+<Incremento> ::= <lvalue> OP_INC ;
+<Decremento> ::= <lvalue> OP_DEC ;
+
+<Atribuicao> ::= <lvalue> <OpAtrib> <exp> ;
+<OpAtrib> ::= REL_EQUAL
+            | REL_EQUAL_SUM
+            | REL_EQUAL_SUB
+            | REL_EQUAL_MULT
+            | REL_EQUAL_DIV ;
+
+<lvalue> ::= ID
+           | ID DEL_LBRACKET <exp> DEL_RBRACKET ;
+
+<exp> ::= <exp_or> ;
+
+<exp_or> ::= <exp_or> LOG_OR <exp_and>
+           | <exp_and> ;
+
+<exp_and> ::= <exp_and> LOG_AND <exp_bit_or>
+            | <exp_bit_or> ;
+
+<exp_bit_or> ::= <exp_bit_or> BIT_OR <exp_bit_xor>
+               | <exp_bit_xor> ;
+
+<exp_bit_xor> ::= <exp_bit_xor> BIT_XOR <exp_bit_and>
+                | <exp_bit_and> ;
+
+<exp_bit_and> ::= <exp_bit_and> BIT_AND <exp_equal>
+                | <exp_equal> ;
+
+<exp_equal> ::= <exp_equal> REL_COMP <exp_rel>
+              | <exp_equal> REL_DIFF <exp_rel>
+              | <exp_rel> ;
+
+<exp_rel> ::= <exp_rel> REL_BIGGER <exp_add>
+            | <exp_rel> REL_BIGGER_EQUAL <exp_add>
+            | <exp_rel> REL_MINOR <exp_add>
+            | <exp_rel> REL_MINOR_EQUAL <exp_add>
+            | <exp_add> ;
+
+<exp_add> ::= <exp_add> OP_SUM <exp_mul>
+            | <exp_add> OP_SUB <exp_mul>
+            | <exp_mul> ;
+
+<exp_mul> ::= <exp_mul> OP_MULT <exp_un>
+            | <exp_mul> OP_DIV <exp_un>
+            | <exp_mul> OP_MOD <exp_un>
+            | <exp_un> ;
+
+<exp_un> ::= OP_SUM <exp_un>
+           | OP_SUB <exp_un>
+           | LOG_NOT <exp_un>
+           | BIT_NOT <exp_un>
+           | OP_INC <exp_un>
+           | OP_DEC <exp_un>
+           | <exp_post> ;
+
+<exp_post> ::= <exp_post> OP_INC
+             | <exp_post> OP_DEC
+             | <exp_post> DEL_LBRACKET <exp> DEL_RBRACKET
+             | <exp_post> DEL_LPAREN DEL_RPAREN
+             | <exp_post> DEL_LPAREN <ListaArgs> DEL_RPAREN
+             | <prim> ;
+
+<prim> ::= DEL_LPAREN <exp> DEL_RPAREN
+         | <lvalue>
+         | LIT_INT
+         | LIT_FLOAT
+         | LIT_CHAR
+         | LIT_STRING
+         | LIT_BINARIO
+         | LIT_HEX
+         | KEY_TRUE
+         | KEY_FALSE ;
+
+<ListaArgs> ::= <Arg>
+              | <ListaArgs> DEL_COMMA <Arg> ;
+
+<Arg> ::= <exp>
+        | BIT_AND <lvalue> ;

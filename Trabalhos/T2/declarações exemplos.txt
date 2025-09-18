@@ -1,0 +1,126 @@
+COLA RAPIDA - LINGUAGEM (GALS)
+
+- TIPOS BASICOS
+int
+flottans
+duplex
+littera
+chorda
+verumfalsum  (literais: verum, falsum)
+
+- DECLARACAO DE VARIAVEIS
+Formas:
+Tipo nome
+Tipo nome = <exp>
+Tipo nome1, nome2, ...
+Tipo nome1 = <exp>, nome2 = <exp>, ...
+Exemplos:
+int a;
+flottans fx = 1.5;
+verumfalsum ok = verum;
+int x, y = 10, z;
+
+- DECLARACAO DE VETORES
+Formas:
+Tipo nome[<exp>]
+Tipo nome[]
+Exemplos:
+int v[10];
+int dyn[];
+
+- BLOCO / ESCOPO
+Forma:
+{ ... }
+Exemplo:
+{ int a = 0; a = a + 1; }
+
+- ATRIBUICAO
+Operadores: =  +=  -=  *=  /=
+LValue: ID  |  ID[<exp>]
+Exemplos:
+a = 3;
+v[i] = a + 2;
+a += 1;
+b -= 2;
+
+- EXPRESSOES (RESUMO)
+Aritmeticas: +  -  *  /  %
+Relacionais: >  >=  <  <=  ==  !=
+Logicas: &&  ||  !
+Bit a bit: &  |  ^  ~  <<  >>
+Unarios: +x  -x  !x  ~x  ++x  --x
+Pos-fixos: x++  x--  chamada  indexacao
+Parenteses: ( <exp> )
+
+- FUNCOES (RETORNAM VALOR)
+Forma:
+Tipo nome(parametros) { ... }
+Retorno:
+reditus <exp>;
+Exemplo:
+int sum2(int a, int b) { reditus a + b; }
+
+- PROCEDIMENTOS (VOID)
+Forma:
+vacuum nome(parametros) { ... }
+Exemplo:
+vacuum fill(int v[], int n) { nam (i = 0; i < n; i = i + 1) { v[i] = i; } }
+
+- PARAMETROS
+Variavel: Tipo id
+Vetor: Tipo id[]
+Multiplos separados por virgula
+Exemplo:
+int foo(int x, flottans y, int v[])
+
+- CHAMADA DE SUB-ROTINA
+Formas:
+nome();
+nome(arg1, arg2, ...)
+Passagem por referencia (opcional na gramatica): &<lvalue>
+Exemplos:
+sum2(3, 4);
+fill(v, n);
+cout("a=", a);
+cin(a, v[0]);
+
+- IF / ELSE
+si (<exp>) <Comando>
+si (<exp>) <Comando> aliud <Comando>
+Exemplo:
+si (a < b) { a = b; } aliud { b = a; }
+
+- WHILE (PRE-TESTADO)
+dum (<exp>) <Comando>
+Exemplo:
+dum (i < n) { i = i + 1; }
+
+- DO-WHILE (POS-TESTADO)
+facere <Comando> dum (<exp>);
+Exemplo:
+facere { i = i - 1; } dum (i > 0);
+
+- FOR (init; cond; pos)
+nam (<Atribuicao>; <exp>; <pos>) <Comando>
+pos: atribuicao  |  lvalue++  |  lvalue--  |  lista separada por virgulas
+Exemplo:
+nam (i = 0; i < n; i = i + 1, ++a, b--) { v[i] = i*2; }
+
+- BREAK / CONTINUE / RETURN
+frangere;
+permanere;
+reditus <exp>;    (em funcao)
+
+- COMENTARIOS (TOKENS DO LEXICO)
+Linha: // ...
+Bloco: /* ... */
+
+- MINI TEMPLATE
+int sum2(int a, int b) { reditus a + b; }
+
+vacuum main() {
+  int i = 0, n = 5, v[10];
+  dum (i < n) { v[i] = sum2(i, 1); i++; }
+  facere { n--; } dum (n > 0);
+  si (v[0] > 0) { cout("ok", v[0]); } aliud { cout("zero"); }
+}
