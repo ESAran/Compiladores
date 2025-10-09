@@ -1,0 +1,43 @@
+<Programa> ::= <Bloco> ;
+
+<Bloco> ::= DEL_LBRACE <ListaComandos> DEL_RBRACE
+| DEL_LBRACE DEL_RBRACE ;
+
+<ListaComandos> ::= <Comando>
+| <ListaComandos> <Comando> ;
+
+<Comando> ::= <Atribuicao> DEL_SEMICOLON
+| <Comandoprint>
+| <Bloco> ;
+
+<Comandoprint> ::= KEY_PRINT DEL_LPAREN <exp> DEL_RPAREN #14 DEL_SEMICOLON ;
+
+<Atribuicao> ::= <lvalue> REL_EQUAL <exp> #5 ;
+
+<lvalue> ::= ID #4 ;
+
+<exp> ::= <exp_add> ;
+
+<exp_add> ::= <exp_add> OP_SUM <exp_mul> #6
+| <exp_add> OP_SUB <exp_mul> #7
+| <exp_mul> ;
+
+<exp_mul> ::= <exp_mul> OP_MULT <exp_pow> #8
+| <exp_mul> OP_DIV <exp_pow> #9
+| <exp_mul> OP_MOD <exp_pow> #10
+| <exp_pow> ;
+
+<exp_pow> ::= <exp_post> OP_POW <exp_un> #11
+| <exp_post> OP_LOG <exp_un> #15
+| <exp_post> ;
+
+<exp_un> ::= OP_SUM <exp_un> #12
+| OP_SUB <exp_un> #13
+| <exp_post> ;
+
+<exp_post> ::= <prim> ;
+
+<prim> ::= DEL_LPAREN <exp> DEL_RPAREN
+| ID #3
+| LIT_INT #1
+| LIT_FLOAT #2 ;
