@@ -1,0 +1,209 @@
+# ----------- TESTES M3.1
+
+>> (1 ponto) Suporte a operações relacionais
+
+vacuum principale() {
+    int a, b;
+    legere(a);    // informe, por ex.: 3
+    legere(b);    // e 5
+
+    // se (a < b) imprime 1
+    si (a < b) {
+        scribere(1);
+    }
+    // se (a == b) imprime 2
+    si (a == b) {
+        scribere(2);
+    }
+    // se (a != b) imprime 3
+    si (a != b) {
+        scribere(3);
+    }
+}
+
+>> (1 ponto) Desvio condicional simples (sem else)
+
+vacuum principale() {
+    int x;
+    legere(x);
+
+    // imprime 1 somente se x for positivo
+    si (x > 0) {
+        scribere(1);
+    }
+}
+
+>> (1,5 ponto) Desvio condicional composto (com else)
+
+vacuum principale() {
+    int x;
+    legere(x);
+
+    // se x é par imprime 0, senão imprime 1
+    si ( (x - (x / 2) * 2) == 0 ) {
+        scribere(0);
+    } aliud {
+        scribere(1);
+    }
+}
+
+>> (1 ponto) Laço de repetição com teste lógico no inicio (while)
+
+vacuum principale() {
+    int i;
+    i = 0;
+
+    // imprime 0,1,2
+    dum (i < 3) {
+        scribere(i);
+        i = i + 1;
+    }
+}
+
+>> (1 ponto) Laço de repetição com teste lógico no fim (do..while) [ERRO]
+
+vacuum principale() {
+    int i;
+    i = 0;
+
+    // imprime 0,1,2 — condição verificada ao fim
+    facere {
+        scribere(i);
+        i = i + 1;
+    } dum (i < 3);
+}
+
+>> (2,5 ponto) Laço de repetição com variável de controle (for)
+
+vacuum principale() {
+    int i;
+
+    // imprime 0,1,2
+    nam (i = 0; i < 3; i++) {
+        scribere(i);
+    }
+}
+
+>> (2 pontos) Suporte para aninhamentos (ex: laço dentro de laço, desvio dentro de laço, etc...);
+
+vacuum principale() {
+    int i, j;
+
+    // para i = 0..1
+    nam (i = 0; i < 2; i++) {
+
+        // while para j = 0..2
+        j = 0;
+        dum (j < 3) {
+            // se (i == j) imprime 9, senão imprime j
+            si (i == j) {
+                scribere(9);
+            } aliud {
+                scribere(j);
+            }
+            j = j + 1;
+        }
+    }
+}
+
+
+
+
+# ---------- TESTES M2.2
+
+vacuum principale() {
+    int x, a, y;
+    int v[3];
+
+    flottans b, c, d;
+
+    b = 2;
+    c = 3;
+
+    // entrada (variável)
+    legere(a);
+
+    // entrada (vetor)
+    legere(v[1]);
+
+    // uso de vetor (+ atribuição em vetor)
+    y = a - 2;
+    v[2] = v[1] + 1;
+
+    d = b + c;
+
+    // saídas (variável e vetor)
+    scribere(v[2]);
+    scribere(x);
+}
+
+
+vacuum principale() {
+    int v[3];
+    int out;
+
+    // lê v[1]
+    legere(v[1]);
+
+    si (v[1] == 0) {
+        out = 10;
+    } aliud {
+        out = v[1] + 5;
+    }
+
+    scribere(out);
+}
+
+
+
+
+---
+
+
+// Soma v[0], v[1], v[2] em acc e imprime
+vacuum principale() {
+    int v[3];
+    int i, acc;
+
+    legere(v[0]);
+    legere(v[1]);
+    legere(v[2]);
+
+    i = 0;
+    acc = 0;
+    dum (i < 3) {
+        acc = acc + v[i];
+        i = i + 1;
+    }
+
+    scribere(acc);
+}
+
+
+// Lê v[0] e v[1], computa v[2] = v[0] + v[1], imprime v[2]
+vacuum principale() {
+    int v[3];
+
+    legere(v[0]);
+    legere(v[1]);
+    v[2] = v[0] + v[1];
+    scribere(v[2]);
+}
+
+
+// Troca v[0] e v[2] e imprime v[0] e v[2]
+vacuum principale() {
+    int v[3];
+    int tmp;
+
+    legere(v[0]);
+    legere(v[2]);
+
+    tmp = v[0];
+    v[0] = v[2];
+    v[2] = tmp;
+
+    scribere(v[0]);
+    scribere(v[2]);
+}
+
