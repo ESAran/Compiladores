@@ -64,40 +64,6 @@ A IDE (Swing) permite colar o código‑fonte, compilar, visualizar o assembly g
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-<!-- COMO COMPILAR -->
-## Como compilar
-
-**Unix/macOS**
-```bash
-# dentro do repositório
-mkdir -p out
-javac -d out $(find src -name "*.java")
-```
-
-**Windows (PowerShell)**
-```powershell
-mkdir out
-javac -d out (Get-ChildItem -Recurse -Filter *.java | ForEach-Object {$_.FullName})
-```
-
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
-
-<!-- COMO EXECUTAR A IDE -->
-## Como executar a IDE
-
-```bash
-# após compilar
-java -cp out Compilador
-```
-
-Passos:
-1. Cole seu código no painel **Código Fonte**.
-2. Clique **Executar**.
-3. Veja o **Código Gerado** (assembly BIP) e o **Console** (erros/avisos).
-4. (Opcional) Clique **Mostrar Tabela de Símbolos** para inspecionar IDs/tipos/escopos.
-
-<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
-
 <!-- EXEMPLOS -->
 ## Exemplos de código
 
@@ -175,7 +141,7 @@ Distribuído sob a licença do projeto. Veja `LICENSE` para mais detalhes.
 Eduardo Slomp Arán — duarans03@gmail.com
 
 Links úteis:
-- Gramática (GALS): `docs/gramatica/`
-- Testes prontos: `docs/Testes de código/testes.txt`
+- Gramática (GALS): `Docs/GALS/`
+- Testes prontos: `Docs/Testes de código/testes.txt`
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
