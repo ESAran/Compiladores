@@ -1,0 +1,106 @@
+
+ID : [a-zA-Z_][a-zA-Z0-9_]*
+
+// literais
+LIT_INT      : [0-9]+
+LIT_FLOAT    : [0-9]+\.[0-9]+
+LIT_CHAR     : '([^\\]|\\.)'
+LIT_STRING   : \"([^\"]|\\.)*\"
+LIT_BINARIO  : 0b[0-1]+
+LIT_HEX      : 0x[0-9a-fA-F]+
+
+// palavras reservadas
+KEY_IF        = ID : "si"
+KEY_ELSE      = ID : "aliud"
+KEY_SWITCH    = ID : "commutare"
+KEY_CASE      = ID : "casus"
+KEY_DEFAULT   = ID : "defaltam"
+KEY_FOR       = ID : "nam"
+KEY_WHILE     = ID : "dum"
+KEY_DO        = ID : "facere"
+KEY_BREAK     = ID : "frangere"
+KEY_CONTINUE  = ID : "permanere"
+KEY_RETURN    = ID : "reditus"
+KEY_PRINT     = ID : "scribere"
+KEY_SCAN      = ID : "legere"
+
+
+KEY_VOID      = ID : "vacuum"
+KEY_BOOL      = ID : "verumfalsum"
+KEY_CHAR      = ID : "littera"
+KEY_INT       = ID : "int"
+KEY_FLOAT     = ID : "flottans"
+KEY_DOUBLE    = ID : "duplex"
+KEY_STRING    = ID : "chorda"
+
+KEY_TRUE      = ID : "verum"
+KEY_FALSE     = ID : "falsum"
+
+KEY_CLASS     = ID : "classis"
+KEY_STRUCT    = ID : "structura"
+KEY_ENUM      = ID : "enumeratio"
+KEY_TYPEDEF   = ID : "typidefi"
+KEY_NAMESPACE = ID : "spatiumnominum"
+KEY_USING     = ID : "usus"
+KEY_THIS      = ID : "hic"
+KEY_PUBLIC    = ID : "publicus"
+KEY_PRIVATE   = ID : "privatus"
+KEY_PROTECTED = ID : "protectus"
+
+KEY_NEW       = ID : "novus"
+KEY_DELETE    = ID : "delere"
+KEY_SIZEOF    = ID : "magnitudo"
+
+//Aritméticos
+OP_SUM   : [\+]
+OP_SUB   : [\-]
+OP_MULT  : [\*]
+OP_DIV   : [/]
+OP_MOD   : [%]
+OP_INC   : "++"
+OP_DEC   : "--"
+
+// Relacionais
+REL_EQUAL        : =
+REL_EQUAL_SUM    : \+=
+REL_EQUAL_SUB    : \-=
+REL_EQUAL_MULT   : \*=
+REL_EQUAL_DIV    : /=
+REL_BIGGER       : >
+REL_BIGGER_EQUAL : >=
+REL_MINOR        : <
+REL_MINOR_EQUAL  : <=
+REL_DIFF         : !=
+REL_COMP         : ==
+
+//Logicos
+LOG_AND  : "&&"
+LOG_OR   : "||"
+LOG_NOT  : !
+
+// bit a bit
+BIT_SHR   : ">>"
+BIT_SHL   : "<<"
+BIT_AND   : "&"
+BIT_OR    : "|"
+BIT_NOT   : "~"
+BIT_XOR   : "^"
+
+// delimitadores
+DEL_DOT        : "."
+DEL_COMMA      : ","
+DEL_SEMICOLON  : ";"
+DEL_COLON      : ":"
+DEL_LPAREN     : "("
+DEL_RPAREN     : ")"
+DEL_LBRACKET   : "["
+DEL_RBRACKET   : "]"
+DEL_LBRACE     : "{"
+DEL_RBRACE     : "}"
+
+// comentarios
+COMMENT_MULTLINES : [/]\*[^\*]*\*+([^\*/][^\*]*\*+)*[/]
+COMMENT_SINGLINE  : [/][/][^\n\r]*
+
+
+:[\s\t\n\e\r]*

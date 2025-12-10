@@ -1,0 +1,169 @@
+
+<Programa> ::= <Estrutura>#48;
+
+<Estrutura> ::= <Estrutura> <Funcao>
+             | <Estrutura> <Procedimento>
+             | <Estrutura> COMMENT_SINGLINE
+             | <Estrutura> COMMENT_MULTLINES
+             | <Estrutura> <Declaracao> DEL_SEMICOLON
+             | <Funcao>
+             | <Procedimento>
+             | COMMENT_MULTLINES
+             | <Declaracao> DEL_SEMICOLON;
+
+<Declaracao> ::= <Declaracao> #49 DEL_COMMA <Tipo_Var> #50
+               | <Declaracao> #49 DEL_COMMA <Atribuicao>
+               | <Tipo> #49 <Tipo_Var> #50
+               | <Tipo> #49 <Atribuicao>;
+
+<Atribuicao> ::= <Tipo_Var> #51 <OpAtrib> <exp> #52;
+
+<OpAtrib> ::= REL_EQUAL
+            | REL_EQUAL_SUM
+            | REL_EQUAL_SUB
+            | REL_EQUAL_MULT
+            | REL_EQUAL_DIV;
+
+<Tipo_Var> ::= <Variavel>
+             | <Vetor>;
+
+<Variavel> ::= <Id>;
+
+<Vetor> ::= <Id> #53 DEL_LBRACKET DEL_RBRACKET
+          | <Id> #53 DEL_LBRACKET #54 <exp> DEL_RBRACKET #55;
+
+<Tipo> ::= KEY_INT #56
+         | KEY_FLOAT #56
+         | KEY_CHAR #56
+         | KEY_STRING #56
+         | KEY_BOOL #56;
+
+<Booleano> ::= KEY_TRUE
+             | KEY_FALSE;
+
+<Void> ::= KEY_VOID #56;
+
+<Id> ::= ID #57;
+
+<Funcao> ::= <Tipo> #49 <Id> #58 DEL_LPAREN #50 DEL_RPAREN <Escopo> #59
+           | <Tipo> #49 <Id> #58 DEL_LPAREN #50 <Parametros_Receb> #50 DEL_RPAREN <Escopo> #59;
+
+<Procedimento> ::= <Void> #49 <Id> #58 DEL_LPAREN #50 DEL_RPAREN <Escopo> #59
+                 | <Void> #49 <Id> #58 DEL_LPAREN #50 <Parametros_Receb> #50 DEL_RPAREN <Escopo> #59;
+
+<Parametros_Receb> ::= <Parametros_Receb> #50 DEL_COMMA <Tipo> #49 <Tipo_Var> #60
+                     | <Parametros_Receb> #50 DEL_COMMA <Tipo> #49 <Atribuicao> #60
+                     | <Tipo> #49 <Tipo_Var> #60
+                     | <Tipo> #49 <Atribuicao> #60;
+
+<Escopo> ::= DEL_LBRACE #61 DEL_RBRACE #62
+           | DEL_LBRACE #61 <Lista_Cmd> DEL_RBRACE #62;
+
+<Lista_Cmd> ::= <Lista_Cmd> <Cmd>
+              | <Cmd>;
+
+<Cmd> ::= <Declaracao> DEL_SEMICOLON
+        | <Atribuicao> DEL_SEMICOLON
+        | <Chamada> DEL_SEMICOLON
+        | <If>
+        | <Laco>
+        | COMMENT_SINGLINE
+        | COMMENT_MULTLINES
+        | <Escreva> DEL_SEMICOLON
+        | <Leia> DEL_SEMICOLON
+        | <Return> DEL_SEMICOLON;
+
+<Return> ::= KEY_RETURN <exp>;
+
+<Escreva> ::= KEY_PRINT DEL_LPAREN <exp> #63 DEL_RPAREN;
+<Leia> ::= KEY_SCAN DEL_LPAREN <Tipo_Var> #64 DEL_RPAREN;
+
+<If> ::= KEY_IF DEL_LPAREN <exp> DEL_RPAREN #65 <Escopo> #66
+       | KEY_IF DEL_LPAREN <exp> DEL_RPAREN #65 <Escopo> <Else> #67;
+
+<Else> ::= KEY_ELSE #68 <Escopo>
+         | KEY_ELSE #68 <If>;
+
+<Laco> ::= <While>
+         | <DoWhile> DEL_SEMICOLON
+         | <For>;
+
+<While> ::= KEY_WHILE #69 DEL_LPAREN <exp> DEL_RPAREN #65 <Escopo> #70;
+<DoWhile> ::= KEY_DO #69 <Escopo> KEY_WHILE DEL_LPAREN <exp> DEL_RPAREN #71;
+
+<For> ::= KEY_FOR DEL_LPAREN <Atribuicao> DEL_SEMICOLON <exp> DEL_SEMICOLON #72 <Atribuicao> DEL_RPAREN #73 <Escopo> #74
+        | KEY_FOR DEL_LPAREN <Atribuicao> DEL_SEMICOLON <exp> DEL_SEMICOLON #72 <Incremento> DEL_RPAREN #73 <Escopo> #74
+        | KEY_FOR DEL_LPAREN <Atribuicao> DEL_SEMICOLON <exp> DEL_SEMICOLON #72 <Decremento> DEL_RPAREN #73 <Escopo> #74;
+
+<Chamada> ::= <Id> #75 DEL_LPAREN DEL_RPAREN
+            | <Id> #75 DEL_LPAREN <Parametros_Pass> DEL_RPAREN #76;
+
+<Parametros_Pass> ::= <Parametros_Pass> DEL_COMMA <referencia>
+                    | <Parametros_Pass> DEL_COMMA <exp>#77
+                    | <referencia>
+                    | <exp>#77;
+
+<referencia> ::= BIT_AND;
+
+<Incremento> ::= <Tipo_Var> OP_INC #78;
+<Decremento> ::= <Tipo_Var> OP_DEC #78;
+
+<exp> ::= <exp> LOG_OR <exp1>
+        | <exp1>;
+
+<exp1> ::= <exp1> LOG_AND <exp2>
+         | <exp2>;
+
+<exp2> ::= <exp2> BIT_OR <exp3>
+         | <exp3>;
+
+<exp3> ::= <exp3> BIT_XOR <exp4>
+         | <exp4>;
+
+<exp4> ::= <exp4> BIT_AND <exp5>
+         | <exp5>;
+
+<exp5> ::= <exp5> <Op_Rel> <exp6> #79
+         | <exp6>;
+
+<exp6> ::= <exp6> <Op_Bitwise> <exp7>
+         | <exp7>;
+
+<exp7> ::= <exp7> <Op_Arit_Baixa> <exp8> #80
+         | <exp8> #80;
+
+<exp8> ::= <exp8> <Op_Arit_Alta> <exp9>
+         | <exp9>;
+
+<exp9> ::= <Op_Neg> <exp10>
+         | <exp10>;
+
+<exp10> ::= LIT_INT #81
+          | LIT_FLOAT #82
+          | LIT_CHAR #83
+          | LIT_STRING #84
+          | <Booleano> #85
+          | DEL_LPAREN <exp> DEL_RPAREN
+          | <Tipo_Var> #86
+          | <Chamada>;
+
+<Op_Rel> ::= REL_BIGGER #87
+           | REL_MINOR #87
+           | REL_BIGGER_EQUAL #87
+           | REL_MINOR_EQUAL #87
+           | REL_COMP #87
+           | REL_DIFF #87;
+
+<Op_Neg> ::= OP_SUB
+           | BIT_NOT
+           | LOG_NOT;
+
+<Op_Bitwise> ::= BIT_SHL
+               | BIT_SHR;
+
+<Op_Arit_Baixa> ::= OP_SUM #88
+                  | OP_SUB #89;
+
+<Op_Arit_Alta> ::= OP_MULT #90
+                 | OP_DIV #91
+                 | OP_MOD;

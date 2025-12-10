@@ -1,0 +1,67 @@
+// =========================[ 1) Chamada de sub-rotinas ]=========================
+// Deve gerar rótulo da função e CALL no código BIP.
+
+vacuum teste() {
+    scribere(42);
+}
+
+vacuum principale() {
+    teste();
+}
+
+// =====================[ 2) Passagem de parâmetros (cópia) ]=====================
+// inc() altera apenas o parâmetro local; x permanece com o mesmo valor.
+
+vacuum inc(int p) {
+    p = p + 1;
+}
+
+vacuum principale() {
+    int x;
+    legere(x);      // digite, por ex., 5
+    inc(x);
+    scribere(x);    // espera imprimir o valor original (ex.: 5)
+}
+
+// =====[ 3) Retorno de funções (em expressões e atribuições) ]=====
+
+int soma(int a, int b) {
+    reditus a + b;
+}
+
+vacuum principale() {
+    int x, y;
+    x = soma(2, 3);         // x = 5
+    y = soma(x, 1) + 2;     // y = (5+1)+2 = 8
+    scribere(y);            // imprime 8
+}
+
+// ==[ 4) Compatibilidade de parâmetros (tipo, ordem, quantidade) ]==
+// Definição:
+int f(int a, int b) {
+    reditus a + b;
+}
+
+flottans media(flottans a, flottans b) {
+    reditus (a + b) / 2.0;
+}
+
+vacuum principale() {
+    int r1;
+    flottans r2;
+
+    // ✅ corretos:
+    r1 = f(2, 3);
+    r2 = media(2.0, 4.0);
+
+    // ❌ quantidade incorreta:
+    // r1 = f(1);                 // deve acusar: esperava 2 parâmetros
+
+    // ❌ tipos incorretos:
+    // r1 = f(1, "abc");          // string não compatível com int
+
+    // ❌ ordem/tipos trocados:
+    // r2 = media(3, 1.5);        // primeiro arg int, esperado flottans
+}
+
+// ==[ 5) Mensagens de aviso/erro significativas ]==
