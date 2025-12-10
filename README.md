@@ -9,9 +9,9 @@
     IDE e compilador acadêmico para linguagem com palavras‑chave em “latim”, gerando assembly BIP (.data/.text).
     <br />
     <br />
-    <a href="docs/gramatica/">Gramática (GALS)</a>
+    <a href="Docs/GALS/">Gramática (GALS)</a>
     ·
-    <a href="docs/Testes de código/testes.txt">Testes prontos</a>
+    <a href="Docs/Testes de código/testes.txt">Testes prontos</a>
   </p>
 </div>
 
